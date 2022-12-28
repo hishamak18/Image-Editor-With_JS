@@ -5,12 +5,16 @@ filtersName = document.querySelector('.filter-info .name');
 filtersValue = document.querySelector('.filter-info .value');
 slider = document.querySelector('.slider input');
 filters = document.querySelectorAll('.filter button')
+rotates = document.querySelectorAll('.rotate button')
 
 
 let brightness = 100, satuaration = 1, invertion = 0, greyscale = 0
+let rotate=0 , horizontal=1,vertical=1;
 
 
 const applyFilter = () => {
+    previewImg.style.transform = `rotate(${rotate}deg) scale(${horizontal},${vertical})`
+
     previewImg.style.filter = `brightness(${brightness}%)saturate(${satuaration})invert(${invertion}%) grayscale(${greyscale})`
 }
 
@@ -65,6 +69,21 @@ const updateFilter = () => {
     applyFilter()
 }
 
+rotates.forEach( option =>{
+    option.addEventListener('click',()=>{
+        if(option.id === "left"){
+            rotate -= 90
+        }else if(option.id === "right"){
+            rotate +=90
+        }else if (option.id === "horizontal"){
+            horizontal = horizontal === 1 ? - 1 : 1
+        }else{
+            vertical = vertical === 1 ? - 1 : 1
+
+        }
+        applyFilter()
+    })
+})
 
 
 fileInput.addEventListener('change', getImg)
