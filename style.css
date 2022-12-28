@@ -127,5 +127,36 @@ body{
 
 }
 
+/* media Query-----------------------------  */
 
+
+@media (max-width:760px) {
+    .container{
+        padding: 25px;
+    }
+    .container .wrapper{
+        flex-wrap: wrap-reverse;
+    }
+    .wrapper .editor-space{
+        width: 100%;
+    }
+    .wrapper .preview-img{
+        width: 100%;
+        margin: 0 0 15px;
+    }
+    
+}
+@media  (max-width:477px) {
+    .controls button{
+        width: 100%;
+        margin-bottom: 10px;
+
+    }
+    .controls .row{
+        width: 100%;
+    }
+    .controls .row .save-img{
+        margin-left: 0px;
+    }
+}
 
