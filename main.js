@@ -7,10 +7,12 @@ slider = document.querySelector('.slider input');
 filters = document.querySelectorAll('.filter button')
 rotates = document.querySelectorAll('.rotate button')
 resetBtn = document.querySelector('.reset-filters');
+saveBtn = document.querySelector('.save-img');
 
 
 
-let brightness = 100, satuaration =0, invertion = 0, greyscale = 0
+
+let brightness = 0, satuaration =0, invertion = 0, greyscale = 0
 let rotate=0 , horizontal=1,vertical=1;
 
 
@@ -23,7 +25,7 @@ const applyFilter = () => {
 const getImg = () => {    //**Getting Images From User */
     let file = fileInput.files[0];
     if (!file) return;
-    console.log(file)
+    console.log(file.style)
     previewImg.src = URL.createObjectURL(file) //** Passing File and add  to PreviewImg src */
     previewImg.addEventListener('load', () => {
         document.querySelector('.container').classList.remove("disable")
@@ -88,13 +90,31 @@ rotates.forEach( option =>{
 })
 
 const resetAll = () =>{
-    brightness = 100, satuaration = 1, invertion = 0, greyscale = 0
+    brightness = 100, satuaration = 0, invertion = 0, greyscale = 0
 rotate=0 , horizontal=1,vertical=1;
 filters[0].click()
 applyFilter()
+}
+
+const saveImg= ()=>{
+    const canvas = document.createElement("canvas")
+    const a = canvas.getContext("2d")
+    canvas.width = previewImg.naturalWidth
+    canvas.height = previewImg.naturalHeight
+
+    a.translate(canvas.width / 2,canvas.height / 2)
+    a.filter = `brightness(${brightness}%)saturate(${satuaration})invert(${invertion}%) grayscale(${greyscale})`
+    a.scale(horizontal,vertical)
+    a.drawImage(previewImg, -canvas.width / 2, -canvas.height / 2,canvas.width,canvas.height)
+   
+    const link = document.createElement("a")
+    link.download="image.jpg"
+    link.href = canvas.toDataURL()
+    link.click()
 }
 
 fileInput.addEventListener('change', getImg)
 chooseImg.addEventListener('click', () => fileInput.click())
 slider.addEventListener('input', updateFilter)
 resetBtn.addEventListener('click',resetAll)
+saveBtn.addEventListener('click',saveImg)
