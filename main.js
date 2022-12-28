@@ -6,9 +6,11 @@ filtersValue = document.querySelector('.filter-info .value');
 slider = document.querySelector('.slider input');
 filters = document.querySelectorAll('.filter button')
 rotates = document.querySelectorAll('.rotate button')
+resetBtn = document.querySelector('.reset-filters');
 
 
-let brightness = 100, satuaration = 1, invertion = 0, greyscale = 0
+
+let brightness = 100, satuaration =0, invertion = 0, greyscale = 0
 let rotate=0 , horizontal=1,vertical=1;
 
 
@@ -85,7 +87,14 @@ rotates.forEach( option =>{
     })
 })
 
+const resetAll = () =>{
+    brightness = 100, satuaration = 1, invertion = 0, greyscale = 0
+rotate=0 , horizontal=1,vertical=1;
+filters[0].click()
+applyFilter()
+}
 
 fileInput.addEventListener('change', getImg)
 chooseImg.addEventListener('click', () => fileInput.click())
 slider.addEventListener('input', updateFilter)
+resetBtn.addEventListener('click',resetAll)
