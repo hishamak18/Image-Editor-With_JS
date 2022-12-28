@@ -18,6 +18,10 @@ body{
     padding: 30px 35px 35px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.343);
 }
+.container.disable :where(.editor-space,.reset-filters,.save-img){
+    opacity: 0.6;
+    pointer-events: none;
+}
 .container h2{
     font-size: 22px;
     font-weight: 700;
