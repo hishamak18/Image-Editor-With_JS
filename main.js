@@ -12,7 +12,7 @@ saveBtn = document.querySelector('.save-img');
 
 
 
-let brightness = 0, satuaration =0, invertion = 0, greyscale = 0
+let brightness = 0, satuaration =1, invertion = 0, greyscale = 0
 let rotate=0 , horizontal=1,vertical=1;
 
 
@@ -90,7 +90,7 @@ rotates.forEach( option =>{
 })
 
 const resetAll = () =>{
-    brightness = 100, satuaration = 0, invertion = 0, greyscale = 0
+    brightness = 100, satuaration = 1, invertion = 0, greyscale = 0
 rotate=0 , horizontal=1,vertical=1;
 filters[0].click()
 applyFilter()
